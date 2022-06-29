@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registros{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="container-fluid">
+            <div class="container">
+                <button type="button" class="btn btn-light">
+                    Registros <span class="badge bg-dark">{{ registros|length }}</span>
+                </button>
+                {% set miembros = 0 %}
+                {% set mujeres = 0 %}
+                {% set hombres = 0 %}
+                {% set newsletter = 0 %}
+                {% for registro in registros %}
+                    {% if registro.miembrosmm == true %}
+                        {% set miembros = miembros + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% for registro in registros %}
+                    {% if registro.newsletter == true %}
+                        {% set newsletter = newsletter + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% for registro in registros %}
+                    {% if registro.genero == 'Mujer' %}
+                        {% set mujeres = mujeres + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% for registro in registros %}
+                    {% if registro.genero == 'Hombre' %}
+                        {% set hombres = hombres + 1 %}
+                    {% endif %}
+                {% endfor %}
+                <button type="button" class="btn btn-light">
+                    Mujeres <span class="badge bg-dark">{{ mujeres }}</span>
+                </button>
+                <button type="button" class="btn btn-light">
+                    Hombres <span class="badge bg-dark">{{ hombres }}</span>
+                </button> <button type="button" class="btn btn-light">
+                    Miembros <span class="badge bg-dark">{{ miembros }}</span>
+                </button>
+                <button type="button" class="btn btn-light">
+                    Newsletter <span class="badge bg-dark">{{ newsletter }}</span>
+                </button>
+
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <u>Correos registrados</u> <span class="badge bg-primary">{{ registros|length }}</span>
+                </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Correos registrados</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% set total = 0 %}
+                            {% for registro in registros %}
+                                {{ registro.correo }}
+                                    {% if not loop.last %},{% endif %}
+                                    {% set total = total + 1 %}
+                            {% endfor %}
+                            <p>
+                                <br> {{ total }} correos
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table id="example" class="mt-5 table table-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad (años)</th>
+                    <th>Género</th>
+                    <th>Correo</th>
+                    <th>Afiliación</th>
+                    <th>Área</th>
+                    <th>Miembro SMM</th>
+                    <th>Newsletter</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for registro in registros %}
+                    {% set edad = date().diff(date(registro.nacimiento)).y %}
+                    <tr>
+                        <td><a href="{{ path('app_registro_show', {'slug': registro.slug}) }}">{{ registro.nombre }} {{ registro.apaterno }} {{ registro.amaterno }}</a></td>
+                        <td class="text-center">{{ edad }}</td>
+                        <td>{{ registro.genero }}</td>
+                        <td>{{ registro.correo }}</td>
+                        <td>{{ registro.afiliacion }}</td>
+                        <td>{{ registro.area }}</td>
+                        <td class="text-center">{{ registro.miembrosmm ? "Si"  : "No" }}</td>
+                        <td class="text-center">{{ registro.newsletter ? "Si" : "No" }}</td>
+                        <td>
+                            <a href="{{ path('app_registro_show', {'slug': registro.slug}) }}"><i class="fas fa-search"></i></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="17">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+{% endblock %}
+  {% block javascripts %}
+      {{ parent() }}
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+      <script type="application/javascript">
+          $(document).ready(function() {
+              $('#example').DataTable();
+          } );
+      </script>
+
+  {% endblock %}

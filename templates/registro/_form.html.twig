@@ -1,0 +1,133 @@
+{{ form_start(form) }}
+<h4 class="mb-2">Datos personales</h4>
+<div class="row g-3">
+    <div class="col-4">
+        <label for="nombre" class="form-label">{{ form_label(form.nombre) }}</label>
+        {{ form_widget(form.nombre,{
+            'attr': {'class': 'form-control',
+                'placeholder': 'Nombre(s)',
+            } } ) }}
+        <div class="invalid-error">
+            {{ form_errors(form.nombre) }}
+        </div>
+    </div>
+    <div class="col-4">
+        <label for="paterno" class="form-label">{{ form_label(form.apaterno) }}</label>
+        {{ form_widget(form.apaterno,{
+            'attr': {'class': 'form-control',
+                'placeholder': 'Apellido paterno',
+            } } ) }}
+        <div class="invalid-error">
+            {{ form_errors(form.apaterno) }}
+        </div>
+    </div>
+    <div class="col-4">
+        <label for="materno" class="form-label">{{ form_label(form.amaterno) }}</label>
+        {{ form_widget(form.amaterno,{
+            'attr': {'class': 'form-control',
+                'placeholder': 'Apellido materno',
+            } } ) }}
+        <div class="invalid-error">
+            {{ form_errors(form.amaterno) }}
+        </div>
+    </div>
+    <div class="col-4">
+        <label for="email" class="form-label">{{ form_label(form.correo) }}</label>
+        {{ form_widget(form.correo,{
+            'attr': {'class': 'form-control',
+                'placeholder': 'user@example.com',
+            } } ) }}
+        <div class="invalid-error">
+            {{ form_errors(form.correo) }}
+        </div>
+    </div>
+    <div class="col-4">
+        <label for="nacimiento" class="form-label">{{ form_label(form.nacimiento) }} <small><em>(opcional)</em></small></label>
+        {{ form_widget(form.nacimiento,{
+            'attr': {'class': 'form-control',
+            } } ) }}
+        <div>{{ form_errors(form.nacimiento) }}</div>
+    </div>
+    <div class="col-4">
+        <label for="genero" class="form-label">{{ form_label(form.genero) }} <small><em>(opcional)</em></small></label>
+        <div>
+            {% for child in form.genero %}
+                <div class="form-check form-check-inline">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="invalid-error">
+            {{ form_errors(form.genero) }}
+        </div>
+    </div>
+
+</div>
+<hr class="mt-2">
+<h4 class="mb-2">Datos académicos</h4>
+<div class="row g-3">
+
+    <div class="col-8">
+        <label for="afiliacion" class="form-label">{{ form_label(form.afiliacion) }}</label>
+        {{ form_widget(form.afiliacion,{
+            'attr': {'class': 'form-control',
+                'placeholder': 'Afiliación',
+            } } ) }}
+        <div class="invalid-error">
+            {{ form_errors(form.afiliacion) }}
+        </div>
+    </div>
+    <div class="col-8">
+        <label for="area" class="form-label">{{ form_label(form.area) }} usando
+            <a href="https://mathscinet.ams.org/mathscinet/msc/msc2020.html" target="_blank">(MSC)</a></label>
+        {{ form_widget(form.area,{
+            'attr': {'class': 'form-control',
+                'placeholder': 'Área de especialidad',
+            } } ) }}
+        <div class="invalid-error">
+            {{ form_errors(form.area) }}
+        </div>
+    </div>
+
+</div>
+
+<hr class="mt-2">
+<h4 class="mb-2">Sociedad Matemática Mexicana</h4>
+
+<div class="row g-3">
+
+    <div class="col-8">
+        <label for="newsletter" class="form-label">{{ form_label(form.newsletter) }}</label>
+        <div>
+            {% for child in form.newsletter %}
+                <div class="form-check form-check-inline">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="invalid-error">
+            {{ form_errors(form.newsletter) }}
+        </div>
+    </div>
+    <div class="col-8">
+        <label for="miembrosmm" class="form-label">{{ form_label(form.miembrosmm) }}</label>
+        <div>
+            {% for child in form.miembrosmm %}
+                <div class="form-check form-check-inline">
+                    {{ form_widget(child) }}  {{ form_label(child, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="invalid-error">
+            {{ form_errors(form.miembrosmm) }}
+        </div>
+    </div>
+
+</div>
+<hr class="my-4">
+<button class="w-100 btn btn-primary btn-lg">{{ button_label|default('Registrarme') }}</button>
+
+
+
+{{ form_widget(form) }}
+{{ form_end(form) }}

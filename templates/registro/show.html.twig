@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('app_registro_index') }}">Registros</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> {{  registro.slug }} </li>
+            </ol>
+        </nav>
+        <div class="row">
+            <div class="col-8">
+                <div class="card border-dark mt-3" style="max-width: 100%">
+                    <div class="card-header">Datos personales</div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">{{ registro.nombre }} {{ registro.apaterno }} {{ registro.amaterno }} </h5>
+                        <p class="card-text">
+                            <strong> {{ registro.correo }} </strong> <br>
+                            {% set edad = date().diff(date(registro.nacimiento)).y %}
+                            {{ registro.nacimiento |format_date('long',locale='es') }}, <small><em>{{ edad }} años</em></small>
+                        </p>
+
+                        <p class="card-text">
+                            <strong> {{ registro.afiliacion }} </strong> <br>
+                            {{ registro.area }}
+                        </p>
+
+                        <p class="card-text">
+                            {% if registro.miembrosmm == true %}
+                                <i class="fas fa-check-square text-success"></i> Es miembro de la SMM
+                            {% else %}
+                                <i class="fas fa-times-square text-danger"></i> No es miembro de la SMM
+                            {%endif %}
+                        </p>
+
+                        <p class="card-text">
+                            {% if registro.newsletter == true %}
+                                <i class="fas fa-check-square text-success"></i> Desea recibir newsletter
+                            {% else %}
+                                <i class="fas fa-times-square text-danger"></i> No desea recibir newsletter
+                            {%endif %}
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-8">
+                <div class="card border-dark mt-3" style="max-width: 100%">
+                    <div class="card-header">Información de control</div>
+                    <div class="card-body text-dark">
+                        <p class="card-text">
+                        <address>
+                            <strong>Registrado:</strong> {{ registro.created |format_date('long',locale='es')}}  <br>
+                            <strong>Modificado:</strong> {{ registro.modified |format_date('long',locale='es')}}
+                            <hr>
+                            <p> {{registro.comentarios}} </p>
+
+                            <div {{ stimulus_controller('modal-form', {
+                                formUrl: path('app_registro_evaluacion',{'slug':registro.slug})
+                            }) }}>
+                                <button
+                                        class="btn btn-primary btn-sm"
+                                        data-action="modal-form#openModal"
+                                >Agregar comentarios</button>
+                                {{ include('registro/_modal.html.twig', {
+                                    modalTitle: 'Agregar comentarios',
+                                }) }}
+                            </div>
+                        </address>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

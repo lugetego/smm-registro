@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'registro/form_errors.html.twig' %}
+
+{% block title %}{{nombre_evento}}{% endblock %}
+
+{% block body %}
+    <div class="container bg-light">
+        <main>
+           <div class="py-3">
+                <h2>Registro </h2>
+                <hr>
+            </div>
+                    {{ include('registro/_form.html.twig') }}
+        </main>
+
+        <footer class="my-2 pt-2 text-muted text-center text-small">
+            <p class="mb-1">Sociedad Matemática Mexicana</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="https://www.smm.org.mx/privacidad.php" target="_blank">Aviso de privacidad</a></li>
+            </ul>
+        </footer>
+
+    </div>
+{% endblock %}
