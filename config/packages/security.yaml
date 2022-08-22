@@ -46,7 +46,8 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-          - { path: ^/registro/new, roles: PUBLIC_ACCESS }
+          - { path: ^/registro/es/new, roles: PUBLIC_ACCESS }
+          - { path: ^/registro/en/new, roles: PUBLIC_ACCESS }
           - { path: ^/registro/.+/.+/recomendacion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
           - { path: ^/registro, roles: ROLE_ADMIN }
           - { path: ^/register, roles: ROLE_ADMIN }

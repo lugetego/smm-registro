@@ -38,7 +38,7 @@ class RegistroController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_registro_new", methods={"GET", "POST"})
+     * @Route("/{_locale}/new", name="app_registro_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager,\Swift_Mailer $mailer): Response
     {

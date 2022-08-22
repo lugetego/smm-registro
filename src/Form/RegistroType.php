@@ -34,11 +34,12 @@ class RegistroType extends AbstractType
                     'choices' => [
                         'Mujer' => 'Mujer',
                         'Hombre' => 'Hombre',
+                        'Otro' => 'Otro'
                     ],
                     'required' => false,
-                    'expanded' => true,
+                    'expanded' => false,
                     'label'=>'Género',
-                    'placeholder' => false
+                    'placeholder' => 'Seleccionar'
 
                 ]
             )
@@ -71,7 +72,7 @@ class RegistroType extends AbstractType
                         'No' => 'No',
                     ],
                     'expanded' => true,
-                    'label'=>'¿Es miembro de la SMM?',
+                    'label'=>'¿Eres miembro de la Sociedad Matemática Mexicana?',
 
                 ]
             )
@@ -84,7 +85,7 @@ class RegistroType extends AbstractType
                         'No' => 'No',
                     ],
                     'expanded' => true,
-                    'label'=>'¿Desea recibir la newsletter de la SMM?',
+                    'label'=>'¿Te gustaría recibir el Boletín de la Sociedad Matemática Mexicana?',
 
                 ]
             )
