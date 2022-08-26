@@ -75,12 +75,12 @@ class Registro
     private $area;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="string", length=10)
      */
     private $newsletter;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="string", length=10)
      */
     private $miembrosmm;
 
@@ -212,25 +212,24 @@ class Registro
         return $this;
     }
 
-
-    public function getNewsletter(): ?bool
+    public function getNewsletter(): ?string
     {
         return $this->newsletter;
     }
 
-    public function setNewsletter(?bool $newsletter): self
+    public function setNewsletter(?string $newsletter): self
     {
         $this->newsletter = $newsletter;
 
         return $this;
     }
 
-    public function getMiembrosmm(): ?bool
+    public function getMiembrosmm(): ?string
     {
         return $this->miembrosmm;
     }
 
-    public function setMiembrosmm(?bool $miembrosmm): self
+    public function setMiembrosmm(?string $miembrosmm): self
     {
         $this->miembrosmm = $miembrosmm;
 
