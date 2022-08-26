@@ -47,23 +47,37 @@ class RegistroController extends AbstractController
         $form->handleRequest($request);
         $twigglobals = $this->get("twig")->getGlobals();
         $nombre_evento = $twigglobals["nombre_evento"];
+        $locale = $request->getLocale();
+
 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($registro);
             $entityManager->flush();
 
-            // Mail
-            $message = (new \Swift_Message('SMM - Registro'))
-                ->setFrom('webmaster@matmor.unam.mx')
-                ->setTo(array($registro->getCorreo() ))
-                //->setTo('gerardo@matmor.unam.mx')
-                ->setBcc(array('gerardo@matmor.unam.mx'))
-                ->setBody($this->renderView('mails/confirmacion.txt.twig', array('registro' => $registro)));
+            if($locale == "es") {
 
-            ;
+                // Mail
+                $message = (new \Swift_Message('SMM - Registro'))
+                    ->setFrom('webmaster@matmor.unam.mx')
+                    ->setTo(array($registro->getCorreo() ))
+                    //->setTo('gerardo@matmor.unam.mx')
+                    ->setBcc(array('gerardo@matmor.unam.mx'))
+                    ->setBody($this->renderView('mails/confirmacion.txt.twig', array('registro' => $registro)));
+
+            }
+            else {
+                // Mail
+                $message = (new \Swift_Message('MMS - Registration'))
+                    ->setFrom('webmaster@matmor.unam.mx')
+                    ->setTo(array($registro->getCorreo() ))
+                    //->setTo('gerardo@matmor.unam.mx')
+                    ->setBcc(array('gerardo@matmor.unam.mx'))
+                    ->setBody($this->renderView('mails/confirmacion_en.txt.twig', array('registro' => $registro)));
+
+            }
+
             $mailer->send($message);
-
             //return $this->redirectToRoute('app_registro_index', [], Response::HTTP_SEE_OTHER);
             return $this->render('registro/confirmacion.html.twig', [
                 'registro' => $registro,
