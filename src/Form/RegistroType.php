@@ -47,6 +47,7 @@ class RegistroType extends AbstractType
                 'required' => false,
                 'label'=>'Fecha de nacimiento',
                 'widget' => 'single_text',
+                'format' => 'MM-dd-yyyy',
                 'by_reference' => true,
 
                 'attr' => [
