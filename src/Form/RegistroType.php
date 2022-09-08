@@ -49,7 +49,7 @@ class RegistroType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'MM-dd-yyyy',
                 'by_reference' => true,
-
+                'html5' => false,
                 'attr' => [
                     'class' => 'form-control input-inline datepicker',
                     'data-provide' => 'datepicker',
