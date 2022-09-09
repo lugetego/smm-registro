@@ -43,9 +43,17 @@
     </div>
     <div class="col-4">
         <label for="nacimiento" class="form-label">{{ form_label(form.nacimiento) }} <small><em>{{"(opcional)"|trans}}</em></small></label>
-        {{ form_widget(form.nacimiento,{
-            'attr': {'class': 'form-control',
-            } } ) }}
+        <div class="row">
+            <div class="col-4">
+                {{ form_widget(form.nacimiento.month,{'attr': {'class': 'form-control'}, 'placeholder':'Mes'|trans } ) }}
+            </div>
+            <div class="col-4">
+                {{ form_widget(form.nacimiento.day,{'attr': {'class': 'form-control'} , 'placeholder':'Día'|trans } ) }}
+            </div>
+            <div class="col-4">
+                {{ form_widget(form.nacimiento.year,{'attr': {'class': 'form-control'} , 'placeholder':'Año'|trans } ) }}
+            </div>
+        </div>
         <div>{{ form_errors(form.nacimiento) }}</div>
     </div>
     <div class="col-4">
@@ -125,6 +133,7 @@
 </div>
 <hr class="my-4">
 <button class="w-100 btn btn-primary btn-lg">{{ button_label|default('Registrarme'|trans) }}</button>
+
 
 
 

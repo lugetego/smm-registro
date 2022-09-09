@@ -46,14 +46,10 @@ class RegistroType extends AbstractType
             ->add('nacimiento',BirthdayType::class, array(
                 'required' => false,
                 'label'=>'Fecha de nacimiento',
-                'widget' => 'single_text',
+                'widget' => 'choice',
                 'html5' => false,
-
-                'by_reference' => true,
-
-                'attr' => [
-                    'class' => 'form-control input-inline datepicker',
-                    'data-provide' => 'datepicker',
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                 ],
             ))
             ->add('correo', null, array(
