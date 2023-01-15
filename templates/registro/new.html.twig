@@ -7,9 +7,20 @@
     <div class="container bg-light">
         <main>
            <div class="py-3">
-                <h2>{{"Registro"|trans}} </h2>
-                <hr>
-            </div>
+                <h2>{{"Registro para personas matemáticas fuera de México"|trans}} </h2>
+
+               <p class="pt-3 text-muted"> {{ "Este registro tiene como objetivo elaborar una base de datos con la información necesaria para poder mantener informados a las personas que así lo deseen sobre las principales actividades y proyectos de la" |trans}}
+                   <a href="https://www.smm.org.mx/" target="_blank" >
+                       {{ "Sociedad Matemática Mexicana"|trans}}</a> {{ "("~"SMM"|trans~")"}}.
+               </p>
+               <p class="pt-1 text-muted">
+               {{"El registro no lo hace miembro de la SMM."|trans}} {{"Para mayores informes sobre inscripciones a la SMM ver en"|trans~":"}}
+                   <a href="https://www.smm.org.mx/membresias" target="_blank" >
+                       https://www.smm.org.mx/membresias
+                   </a>
+               </p>
+               <hr>
+           </div>
                     {{ include('registro/_form.html.twig') }}
         </main>
 
