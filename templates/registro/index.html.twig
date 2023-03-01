@@ -16,6 +16,7 @@
                 {% set miembros = 0 %}
                 {% set mujeres = 0 %}
                 {% set hombres = 0 %}
+                {% set otro = 0 %}
                 {% set newsletter = 0 %}
                 {% for registro in registros %}
                     {% if registro.miembrosmm == true %}
@@ -35,6 +36,11 @@
                 {% for registro in registros %}
                     {% if registro.genero == 'Hombre' %}
                         {% set hombres = hombres + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% for registro in registros %}
+                    {% if registro.genero == 'Otro' %}
+                        {% set otro = otro + 1 %}
                     {% endif %}
                 {% endfor %}
                 <button type="button" class="btn btn-light">
