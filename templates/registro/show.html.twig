@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Registro{% endblock %}
+{% block lang %}{% endblock %}
 
 {% block body %}
     <div class="container mt-3">
@@ -15,7 +16,7 @@
                 <div class="card border-dark mt-3" style="max-width: 100%">
                     <div class="card-header">Datos personales</div>
                     <div class="card-body text-dark">
-                        <h5 class="card-title">{{ registro.nombre }} {{ registro.apaterno }} {{ registro.amaterno }} </h5>
+                        <h5 class="card-title">{{ registro.nombre }} {{ registro.apellido }} </h5>
                         <p class="card-text">
                             <strong> {{ registro.correo }} </strong> <br>
                             {% set edad = date().diff(date(registro.nacimiento)).y %}
