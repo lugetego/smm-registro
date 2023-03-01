@@ -103,8 +103,8 @@
                         <td>{{ registro.correo }}</td>
                         <td>{{ registro.afiliacion }}</td>
                         <td>{{ registro.area }}</td>
-                        <td class="text-center">{{ registro.miembrosmm ? "Si"  : "No" }}</td>
-                        <td class="text-center">{{ registro.newsletter ? "Si" : "No" }}</td>
+                        <td class="text-center">{{ registro.miembrosmm }}</td>
+                        <td class="text-center">{{ registro.newsletter }}</td>
                         <td>
                             <a href="{{ path('app_registro_show', {'slug': registro.slug}) }}"><i class="fas fa-search"></i></a>
                         </td>
