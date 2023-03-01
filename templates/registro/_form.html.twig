@@ -12,23 +12,13 @@
         </div>
     </div>
     <div class="col-4">
-        <label for="paterno" class="form-label">{{ form_label(form.apaterno) }}</label>
-        {{ form_widget(form.apaterno,{
+        <label for="apellido" class="form-label">{{ form_label(form.apellido) }}</label>
+        {{ form_widget(form.apellido,{
             'attr': {'class': 'form-control',
-                'placeholder': 'Apellido paterno',
+                'placeholder': 'Apellido(s)',
             } } ) }}
         <div class="invalid-error">
-            {{ form_errors(form.apaterno) }}
-        </div>
-    </div>
-    <div class="col-4">
-        <label for="materno" class="form-label">{{ form_label(form.amaterno) }}</label>
-        {{ form_widget(form.amaterno,{
-            'attr': {'class': 'form-control',
-                'placeholder': 'Apellido materno',
-            } } ) }}
-        <div class="invalid-error">
-            {{ form_errors(form.amaterno) }}
+            {{ form_errors(form.apellido) }}
         </div>
     </div>
     <div class="col-4">

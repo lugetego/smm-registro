@@ -21,11 +21,8 @@ class RegistroType extends AbstractType
             ->add('nombre',null, array(
                 'label'=>'Nombre(s)',
             ))
-            ->add('apaterno', null, array(
-                'label'=>'Apellido paterno',
-            ))
-            ->add('amaterno', null, array(
-                'label'=>'Apellido materno',
+            ->add('apellido', null, array(
+                'label'=>'Apellido(s)',
             ))
             ->add(
                 'genero',

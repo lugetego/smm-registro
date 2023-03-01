@@ -68,7 +68,7 @@ class RegistroController extends AbstractController
             }
             else {
                 // Mail
-                $message = (new \Swift_Message('MMS - Registration'))
+                $message = (new \Swift_Message('SMM - Registration'))
                     ->setFrom('webmaster@matmor.unam.mx')
                     ->setTo(array($registro->getCorreo() ))
                     //->setTo('gerardo@matmor.unam.mx')

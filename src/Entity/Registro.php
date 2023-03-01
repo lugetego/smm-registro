@@ -36,16 +36,11 @@ class Registro
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $apaterno;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $amaterno;
+    private $apellido;
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
-     * @Gedmo\Slug(fields={"nombre", "apaterno", "amaterno"}, updatable=false)
+     * @Gedmo\Slug(fields={"nombre", "apellido"}, updatable=false)
      */
     private $slug;
 
@@ -116,26 +111,14 @@ class Registro
         return $this;
     }
 
-    public function getApaterno(): ?string
+    public function getApellido(): ?string
     {
-        return $this->apaterno;
+        return $this->apellido;
     }
 
-    public function setApaterno(string $apaterno): self
+    public function setApellido(string $apellido): self
     {
-        $this->apaterno = $apaterno;
-
-        return $this;
-    }
-
-    public function getAmaterno(): ?string
-    {
-        return $this->amaterno;
-    }
-
-    public function setAmaterno(?string $amaterno): self
-    {
-        $this->amaterno = $amaterno;
+        $this->apellido = $apellido;
 
         return $this;
     }
