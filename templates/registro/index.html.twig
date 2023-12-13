@@ -73,7 +73,7 @@
                         <div class="modal-body">
                             {% set total = 0 %}
                             {% for registro in registros %}
-                                {{ registro.correo }}
+                                {{registro.correo}}
                                     {% if not loop.last %},{% endif %}
                                     {% set total = total + 1 %}
                             {% endfor %}
